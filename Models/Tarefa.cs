@@ -8,8 +8,8 @@ namespace CrudTodoListApi.Models
     {
         [Key]
         public int id { get; set; }
-        public string NomeTarefa { get; set; }
-        public bool Concluido { get; set; }
-        public DateTime DataDeCriacao { get; set; }
+        public string nomeTarefa { get; set; }
+        public bool concluido { get; set; }
+        public DateTime dataDeCriacao { get; set; }
     }
 }
