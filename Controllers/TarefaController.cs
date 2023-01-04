@@ -31,14 +31,14 @@ namespace CrudTodoListApi.Controllers
         [HttpPost("/")]
         public ActionResult InserirTarefa([FromBody] Tarefa tarefa){
 
-            if (tarefa.DataDeCriacao == DateTime.MinValue)
+            if (tarefa.dataDeCriacao == DateTime.MinValue)
             {
-                tarefa.DataDeCriacao = DateTime.UtcNow;
+                tarefa.dataDeCriacao = DateTime.UtcNow;
             }
             dbContext.tarefas.Add(tarefa);
             dbContext.SaveChanges();
 
-            return Ok(tarefa);
+            return Created($"/{tarefa.id}",tarefa);
         }
 
         [HttpPut("/{idTask}")]
@@ -48,8 +48,8 @@ namespace CrudTodoListApi.Controllers
                                 .FirstOrDefault();
             if (tarefaDb == null) return NotFound();
 
-            tarefaDb.NomeTarefa = tarefa.NomeTarefa;
-            tarefaDb.Concluido = tarefa.Concluido;
+            tarefaDb.nomeTarefa = tarefa.nomeTarefa;
+            tarefaDb.concluido = tarefa.concluido;
 
             dbContext.tarefas.Update(tarefaDb);
             dbContext.SaveChanges();
